@@ -27,7 +27,6 @@ class TestService {
 }
 
 const Factory = <T>(target: Constructor<T>): T => {
-  // 获取所有注入的服务
   /**
    * design:type: 属性类型
    * design:paramtypes: 参数类型
@@ -38,12 +37,16 @@ const Factory = <T>(target: Constructor<T>): T => {
    * 参数装饰器、方法装饰器: design:type、design:paramtypes、design:returntype
    * 访问器装饰器: design:type、design:paramtypes
    */
+
+  // 获取targrt类的构造函数所有注入的服务
   const providers = Reflect.getMetadata('design:paramtypes', target) || []
 
-  console.log('provides', providers)
+  // console.log('provides', providers)
+  // 将参数依次实例化
   const args = providers.map((provider: Constructor) => new provider())
-  console.log(...args)
+  // console.log(...args)
 
+  // 将实例化的数组作为target类的参数，并返回target的实例
   return new target(...args)
 }
 
