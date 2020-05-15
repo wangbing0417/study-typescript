@@ -1,6 +1,6 @@
 ## 日常学习 typescript 的项目
 
-git clone
+git clone  
 npm i
 
 推荐使用 vscode IDE
